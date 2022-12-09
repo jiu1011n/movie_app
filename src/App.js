@@ -1,22 +1,50 @@
 import { useEffect, useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+// Data
+import { dummy } from './dummy';
+
+// Pages
+import Home from './pages/Home';
+import Celebrity from './pages/Celebrity';
+import Tv from './pages/Tv';
+import NotFound from './pages/NotFound';
+import Movie from './pages/Movies';
+import MovieDetail from './pages/MovieDetail';
+
+// Style
 import './App.css';
+import Header from './components/Header';
+import { eventWrapper } from '@testing-library/user-event/dist/utils';
 
 function App() {
-  const [ movie, setMovie ] = useState();
+    return (
+        <div className='root-wrap'>
+            <BrowserRouter>
+                <Header />
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/movie" element={<Movie />} />
+                    <Route path="/movie/:title" element={<MovieDetail />} />
 
-  useEffect(() => {
-    fetch('https://api.themoviedb.org/3/movie/{movie_id}?api_key=047e66f105b553e0beff7f005bd621d0&language=ko&append_to_response=KR')
-      .then((res) => res.json())
-      .then((data) => {
-        console.log("data")
-      })
-  })
+                    <Route path="/person" element={<Celebrity />} />
+                    <Route path="/tv" element={<Tv />} />
+                    <Route path="/*" element={<NotFound />} />
+                </Routes>
+            </BrowserRouter>
+        </div>
 
-  return (
-    <div>
-      
-    </div>
-  );
+
+        // <div className='container'>
+        //   <div className='app-content'>
+        //     {
+        //       dummy.results.map((item) => (
+        //         <Movie poster_path={item.poster_path} title={item.title} vote_average={item.vote_average} />
+        //       ))
+        //     }
+        //   </div>
+        // </div>
+    );
 }
 
 export default App;

@@ -1,0 +1,22 @@
+.app-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+}
+.movie_container {
+    width: 250px;
+}
+.movie_container img {
+    max-width: 100%;
+}
+.movie_container .movie_info {
+    background: #cacaca;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.movie_container .movie_info span {
+    margin-left: 2px;
+}
